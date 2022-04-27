@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adservice
+spec:
+  template:
+    metadata:
+      labels:
+        app: adservice
+    spec:
+      imagePullSecrets:
+      - name: docker-sec
+      containers:
+      - name: server
+        image: gkulshre/coit-home-commerce:adservice_v1
+        ports:
+        - containerPort: 9555
+        env:
+        - name: PORT
+          valueFrom:
+             configMapKeyRef:
+                   name: cm1
+                   key: container_port
+       
