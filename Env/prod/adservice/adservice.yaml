@@ -27,19 +27,12 @@ spec:
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
-      imagePullSecrets:
-      - name: docker-sec
       containers:
       - name: server
         image: adservice
         ports:
         - containerPort: 9555
-        env:
-        - name: PORT
-          valueFrom:
-             configMapKeyRef:
-                   name: cm1
-                   key: container_port
+          
         # - name: DISABLE_STATS
         #   value: "1"
         # - name: DISABLE_TRACING
